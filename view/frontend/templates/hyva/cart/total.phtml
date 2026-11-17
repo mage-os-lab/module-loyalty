@@ -1,0 +1,6 @@
+<template x-if="segment.code === 'loyalty'">
+    <div :class="wrapperClass">
+        <div x-text="segment.title"></div>
+        <div x-text="hyva.formatPrice(segment.value)" class="justify-self-end"></div>
+    </div>
+</template>

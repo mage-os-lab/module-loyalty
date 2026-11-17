@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="cart.discount">
+            <block class="Magento\Checkout\Block\Cart\AbstractCart" name="checkout.cart.loyalty"
+                   after="checkout.cart.coupon" template="MageOS_Loyalty::cart/points.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">MageOS\Loyalty\ViewModel\Account</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <!-- Luma renders cart totals with Knockout components -->
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="loyalty" xsi:type="array">
+                                    <item name="component" xsi:type="string">MageOS_Loyalty/js/view/summary/total</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="inCart" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

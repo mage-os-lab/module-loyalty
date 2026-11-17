@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mageos_loyalty" translate="label" sortOrder="900" showInDefault="1" showInWebsite="0"
+                 showInStore="0">
+            <label>Loyalty Points</label>
+            <tab>customer</tab>
+            <resource>MageOS_Loyalty::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Loyalty Points</label>
+                <field id="points_per_unit" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Points Earned per Currency Unit</label>
+                    <comment>Points per unit of base currency invoiced (grand total). 0 stops earning.</comment>
+                    <validate>required-entry validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="point_value" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Value of One Point</label>
+                    <comment>Conversion rate: amount of base currency one point is worth when spent on an order.</comment>
+                    <validate>required-entry validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,45 @@
+{
+    "name": "mage-os/module-loyalty",
+    "description": "Loyalty points earned on invoices, spent as a discount in the cart",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "^103.0.9",
+        "magento/module-checkout": "^100.4.9",
+        "magento/module-config": "^101.2.9",
+        "magento/module-customer": "^103.0.9",
+        "magento/module-quote": "^101.2.9",
+        "magento/module-sales": "^103.0.9",
+        "magento/module-store": "^101.1.9"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageOS\\Loyalty\\": ""
+        }
+    },
+    "require-dev": {
+        "bitexpert/phpstan-magento": "^0.44",
+        "magento/magento-coding-standard": "^41",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "magento/composer-dependency-version-audit-plugin": false,
+            "magento/magento-composer-installer": false
+        }
+    }
+}

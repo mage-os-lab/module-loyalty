@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+    <!-- after grand_total (points pay part of the order, tax is unchanged) and before the gift card total -->
+    <section name="quote">
+        <group name="totals">
+            <item name="loyalty" instance="MageOS\Loyalty\Model\Total\Quote" sort_order="590"/>
+        </group>
+    </section>
+    <section name="order_invoice">
+        <group name="totals">
+            <item name="loyalty" instance="MageOS\Loyalty\Model\Total\Document" sort_order="390"/>
+        </group>
+    </section>
+    <section name="order_creditmemo">
+        <group name="totals">
+            <item name="loyalty" instance="MageOS\Loyalty\Model\Total\Document" sort_order="440"/>
+        </group>
+    </section>
+</config>

@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-11-16",
+  "skill_version": 2,
+  "target": "mage-os",
+  "areas": {
+    "identity": "pass",
+    "license": "pass",
+    "integrity": "pass",
+    "admin_ux": "pass",
+    "ci": "pass",
+    "static_analysis": "pass",
+    "tests": "pass",
+    "security": "pass",
+    "documentation": "pass",
+    "hygiene": "pass"
+  },
+  "decisions": {
+    "tests.behavior_tests": {
+      "choice": "accepted",
+      "date": "2026-11-16",
+      "ask_again": "never"
+    },
+    "documentation.screenshots": {
+      "choice": "playwright",
+      "date": "2026-11-16",
+      "ask_again": "never"
+    }
+  },
+  "notes": [
+    "Integration tests (Test/Integration) were written for the check-extension CI and not run locally; unit tests, PHPStan level 8 and PHPCS pass locally.",
+    "CI not run yet: the repository has no GitHub remote.",
+    "Config section moved to its own ACL resource on 2026-11-16; restricted roles must be re-granted (see CHANGELOG).",
+    "audit.py flags cacheable=false on loyalty_index_index.xml: false positive, page-specific account handle like core customer_account_index."
+  ]
+}

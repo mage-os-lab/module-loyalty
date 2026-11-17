@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="hyva_config_generate_before">
+        <observer name="MageOS_Loyalty_Register_Hyva_Config"
+                  instance="MageOS\Loyalty\Observer\RegisterModuleForHyvaConfig"/>
+    </event>
+</config>

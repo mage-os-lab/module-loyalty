@@ -1,0 +1,41 @@
+{
+    "mageos_loyalty_points": {
+        "column": {
+            "entry_id": true,
+            "customer_id": true,
+            "points": true,
+            "comment": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEOS_LOYALTY_POINTS_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "quote": {
+        "column": {
+            "loyalty_points": true,
+            "base_loyalty_amount": true,
+            "loyalty_amount": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "loyalty_points": true,
+            "base_loyalty_amount": true,
+            "loyalty_amount": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "base_loyalty_amount": true,
+            "loyalty_amount": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "base_loyalty_amount": true,
+            "loyalty_amount": true
+        }
+    }
+}
