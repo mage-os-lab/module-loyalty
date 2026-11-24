@@ -4,6 +4,12 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="Magento_Customer::customer">
+                    <resource id="MageOS_Loyalty::points" title="Loyalty Points" translate="title" sortOrder="60">
+                        <resource id="MageOS_Loyalty::points_adjust" title="Adjust Balances" translate="title"
+                                  sortOrder="10"/>
+                    </resource>
+                </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">

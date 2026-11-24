@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MageOS_Loyalty::points" title="Loyalty Points" translate="title" module="MageOS_Loyalty"
+             sortOrder="60" parent="Magento_Customer::customer" action="mageos_loyalty/points"
+             resource="MageOS_Loyalty::points"/>
+    </menu>
+</config>

@@ -36,11 +36,21 @@ class Account implements ArgumentInterface
     /**
      * Latest ledger entries of the logged-in customer.
      *
-     * @return array<int, array{points: string, comment: ?string, created_at: string}>
+     * @return array<int, array<string, ?string>>
      */
     public function getHistory(): array
     {
         return $this->points->getHistory((int) $this->customerSession->getCustomerId());
+    }
+
+    /**
+     * What a ledger entry is for, in the customer's language.
+     *
+     * @param array<string,?string> $entry
+     */
+    public function describe(array $entry): string
+    {
+        return $this->points->describe($entry);
     }
 
     /**

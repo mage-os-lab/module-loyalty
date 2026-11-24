@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+
+use Hyva\Checkout\ViewModel\Checkout\Formatter;
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Hyva\Theme\Model\ViewModelRegistry $viewModels */
+
+$segment = (array) $block->getData('segment');
+if (empty($segment['value'])) {
+    return;
+}
+?>
+<div class="flex gap-4 justify-between md:gap-0">
+    <span class="label"><?= $escaper->escapeHtml($segment['title'] ?? __('Loyalty Points')) ?></span>
+    <span class="value">
+        <?= /* @noEscape */ $viewModels->require(Formatter::class)->currency((float) $segment['value']) ?>
+    </span>
+</div>

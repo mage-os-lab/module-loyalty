@@ -21,3 +21,27 @@ Points Earned per Currency Unit,Punkte pro Währungseinheit
 Points per unit of base currency invoiced (grand total). 0 stops earning.,Punkte pro fakturierter Einheit der Basiswährung (Gesamtsumme). 0 beendet das Sammeln.
 Value of One Point,Wert eines Punktes
 Conversion rate: amount of base currency one point is worth when spent on an order.,"Umrechnungskurs: Betrag in Basiswährung, den ein Punkt beim Einlösen für eine Bestellung wert ist."
+Earned on an invoice,Bei einer Rechnung gesammelt
+Taken back on a refund,Bei einer Erstattung zurückgenommen
+Spent on an order,Für eine Bestellung eingelöst
+Returned: order canceled,Zurückgegeben: Bestellung storniert
+Returned: order refunded,Zurückgegeben: Bestellung erstattet
+Adjustment,Anpassung
+"Enter a whole number of points, other than 0.",Geben Sie eine ganze Punktzahl ungleich 0 ein.
+Enter a comment: the customer sees it in the points history.,Geben Sie einen Kommentar ein: Der Kunde sieht ihn im Punkteverlauf.
+%1 has only %2 points: nothing was taken away.,%1 hat nur %2 Punkte: Es wurde nichts abgezogen.
+The balance of %1 is now %2 points.,Der Punktestand von %1 beträgt jetzt %2 Punkte.
+Several accounts use this e-mail address: enter the customer ID instead.,Mehrere Konten verwenden diese E-Mail-Adresse: Geben Sie stattdessen die Kunden-ID ein.
+No customer has this e-mail address or ID.,Kein Kunde hat diese E-Mail-Adresse oder ID.
+Adjust a Balance,Punktestand anpassen
+Customer,Kunde
+E-mail address or customer ID.,E-Mail-Adresse oder Kunden-ID.
+"A negative number takes points away, up to the balance.","Eine negative Zahl zieht Punkte ab, höchstens bis zum Punktestand."
+Shown to the customer in the points history.,Wird dem Kunden im Punkteverlauf angezeigt.
+Adjust Balance,Punktestand anpassen
+Adjust Balances,Punktestände anpassen
+ID,ID
+Customer ID,Kunden-ID
+Type,Typ
+Order,Bestellung
+Admin User,Admin-Benutzer

@@ -7,7 +7,16 @@
         <column xsi:type="int" name="customer_id" unsigned="true" nullable="false" comment="Customer ID"/>
         <column xsi:type="int" name="points" unsigned="false" nullable="false"
                 comment="Points earned (+) or spent (-)"/>
+        <!-- rows written before 1.1.0 keep this default until the data patch gives them their type -->
+        <column xsi:type="varchar" name="type" length="16" nullable="false" default="adjust"
+                comment="earn, reclaim, spend, return, refund or adjust"/>
+        <column xsi:type="varchar" name="order_number" length="50" nullable="true"
+                comment="Increment ID of the order the entry is for"/>
+        <column xsi:type="int" name="document_id" unsigned="false" nullable="false" default="0"
+                comment="Invoice or credit memo ID; 0 for the order itself; negative on rows migrated from 1.0"/>
         <column xsi:type="varchar" name="comment" length="255" nullable="true" comment="Comment"/>
+        <column xsi:type="varchar" name="admin_user" length="40" nullable="true"
+                comment="Admin user who made the adjustment"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Created at"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
@@ -16,6 +25,13 @@
         <constraint xsi:type="foreign" referenceId="MAGEOS_LOYALTY_POINTS_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
                     table="mageos_loyalty_points" column="customer_id"
                     referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <!-- also the index of the customer's balance and history; entries without an order never collide -->
+        <constraint xsi:type="unique" referenceId="MAGEOS_LOYALTY_POINTS_CUSTOMER_ID_TYPE_ORDER_NUMBER_DOCUMENT_ID">
+            <column name="customer_id"/>
+            <column name="type"/>
+            <column name="order_number"/>
+            <column name="document_id"/>
+        </constraint>
     </table>
     <table name="quote" resource="checkout">
         <column xsi:type="int" name="loyalty_points" unsigned="true" nullable="true" comment="Loyalty points spent"/>

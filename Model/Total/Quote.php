@@ -32,12 +32,22 @@ class Quote extends AbstractTotal
      *
      * The address that carries no items (billing, or shipping of a virtual cart) is skipped.
      *
+     * Multi-address checkout places one order per address without the quote submit event Redeem notes the
+     * points on: nothing is deducted there, or the orders would be reduced with no debit.
+     *
+     * The amount is rounded down to cents, so the points kept never exceed those asked for, even when one
+     * point is worth less than a cent.
+     *
      * @param QuoteModel $quote
      * @param ShippingAssignmentInterface $shippingAssignment
      * @param Total $total
      */
     public function collect(QuoteModel $quote, ShippingAssignmentInterface $shippingAssignment, Total $total)
     {
+        if ($quote->getData('is_multi_shipping')) {
+            $quote->setData('base_loyalty_amount', 0.0)->setData('loyalty_amount', 0.0);
+            return $this;
+        }
         if (!$shippingAssignment->getItems()) {
             return $this;
         }
@@ -45,8 +55,12 @@ class Quote extends AbstractTotal
         $value = $this->points->getPointValue();
         $baseAmount = 0.0;
         if ($points > 0 && $value > 0 && $quote->getData('customer_id')) {
-            $points = min($points, $this->points->getBalance((int) $quote->getData('customer_id')));
-            $baseAmount = min(round($points * $value, 2), (float) $total->getBaseGrandTotal());
+            // a refund of points already spent leaves a negative balance: it pays nothing
+            $points = max(0, min($points, $this->points->getBalance((int) $quote->getData('customer_id'))));
+            $baseAmount = min(
+                floor(round($points * $value * 100, 4)) / 100,
+                max(0.0, (float) $total->getBaseGrandTotal())
+            );
             $points = (int) ceil(round($baseAmount / $value, 4));
         }
         $amount = min(

@@ -29,7 +29,7 @@ $balance = $viewModel->getBalance();
             <tr>
                 <td class="py-2"><?= $escaper->escapeHtml($block->formatDate($entry['created_at'])) ?></td>
                 <td class="py-2"><?= (int) $entry['points'] > 0 ? '+' : '' ?><?= (int) $entry['points'] ?></td>
-                <td class="py-2"><?= $escaper->escapeHtml((string) $entry['comment']) ?></td>
+                <td class="py-2"><?= $escaper->escapeHtml($viewModel->describe($entry)) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

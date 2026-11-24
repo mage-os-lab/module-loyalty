@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Loki Checkout shows the loyalty total by itself; the cart form is posted as a plain form -->
+        <referenceBlock name="loki-checkout.sidebar.summary">
+            <block class="Magento\Checkout\Block\Cart\AbstractCart" name="loki-checkout.sidebar.loyalty"
+                   after="loki-checkout.sidebar.coupon_code" template="MageOS_Loyalty::cart/points.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">MageOS\Loyalty\ViewModel\Account</argument>
+                    <argument name="checkout" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

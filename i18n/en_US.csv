@@ -21,3 +21,27 @@ Comment,Comment
 "Points per unit of base currency invoiced (grand total). 0 stops earning.","Points per unit of base currency invoiced (grand total). 0 stops earning."
 "Value of One Point","Value of One Point"
 "Conversion rate: amount of base currency one point is worth when spent on an order.","Conversion rate: amount of base currency one point is worth when spent on an order."
+"Earned on an invoice","Earned on an invoice"
+"Taken back on a refund","Taken back on a refund"
+"Spent on an order","Spent on an order"
+"Returned: order canceled","Returned: order canceled"
+"Returned: order refunded","Returned: order refunded"
+Adjustment,Adjustment
+"Enter a whole number of points, other than 0.","Enter a whole number of points, other than 0."
+"Enter a comment: the customer sees it in the points history.","Enter a comment: the customer sees it in the points history."
+"%1 has only %2 points: nothing was taken away.","%1 has only %2 points: nothing was taken away."
+"The balance of %1 is now %2 points.","The balance of %1 is now %2 points."
+"Several accounts use this e-mail address: enter the customer ID instead.","Several accounts use this e-mail address: enter the customer ID instead."
+"No customer has this e-mail address or ID.","No customer has this e-mail address or ID."
+"Adjust a Balance","Adjust a Balance"
+Customer,Customer
+"E-mail address or customer ID.","E-mail address or customer ID."
+"A negative number takes points away, up to the balance.","A negative number takes points away, up to the balance."
+"Shown to the customer in the points history.","Shown to the customer in the points history."
+"Adjust Balance","Adjust Balance"
+"Adjust Balances","Adjust Balances"
+ID,ID
+"Customer ID","Customer ID"
+Type,Type
+Order,Order
+"Admin User","Admin User"

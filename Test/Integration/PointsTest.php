@@ -25,11 +25,33 @@ class PointsTest extends TestCase
     {
         $customerId = (int) DataFixtureStorageManager::getStorage()->get('customer')->getId();
         $points = Bootstrap::getObjectManager()->get(Points::class);
-        $points->add($customerId, 100, 'Order #1');
+        $points->add($customerId, 100, Points::EARN, ['order_number' => '1', 'document_id' => 1]);
 
-        $this->assertFalse($points->spend($customerId, 150, 'Order #2'));
-        $this->assertTrue($points->spend($customerId, 40, 'Order #3'));
+        $this->assertFalse($points->spend($customerId, 150, Points::SPEND, ['order_number' => '2']));
+        $this->assertTrue($points->spend($customerId, 40, Points::SPEND, ['order_number' => '3']));
         $this->assertSame(60, $points->getBalance($customerId));
         $this->assertSame(['-40', '100'], array_column($points->getHistory($customerId), 'points'));
+    }
+
+    /**
+     * The same entry (type, order, document) is written once; a failed checkout frees its order number.
+     */
+    #[DataFixture(CustomerFixture::class, as: 'customer')]
+    public function testAnEntryIsWrittenOncePerOrderAndDocument(): void
+    {
+        $customerId = (int) DataFixtureStorageManager::getStorage()->get('customer')->getId();
+        $points = Bootstrap::getObjectManager()->get(Points::class);
+        $invoice = ['order_number' => '1', 'document_id' => 5];
+
+        $this->assertTrue($points->add($customerId, 100, Points::EARN, $invoice));
+        $this->assertFalse($points->add($customerId, 100, Points::EARN, $invoice));
+        $this->assertTrue($points->add($customerId, 10, Points::ADJUST, ['comment' => 'Goodwill']));
+        $this->assertTrue($points->add($customerId, 10, Points::ADJUST, ['comment' => 'Goodwill']));
+        $this->assertTrue($points->spend($customerId, 30, Points::SPEND, ['order_number' => '2']));
+        $this->assertSame(90, $points->getBalance($customerId));
+
+        $points->unspend($customerId, '2');
+        $this->assertTrue($points->spend($customerId, 30, Points::SPEND, ['order_number' => '2']));
+        $this->assertSame([Points::SPEND => -30], $points->getOrderPoints($customerId, '2'));
     }
 }

@@ -12,6 +12,7 @@ use Magento\Quote\Api\CartRepositoryInterface;
 
 /**
  * Sets how many loyalty points the cart spends (0 or "remove" = none). The total collector caps the number.
+ * Then goes back to the cart, or to the checkout the form was posted from (parameter "checkout").
  */
 class Apply implements HttpPostActionInterface
 {
@@ -53,6 +54,10 @@ class Apply implements HttpPostActionInterface
                 );
             }
         }
-        return $this->redirectFactory->create()->setPath('checkout/cart');
+        $redirect = $this->redirectFactory->create();
+        // the form is also shown in Hyvä Checkout and Loki Checkout: go back there, on the same step
+        return $this->request->getParam('checkout')
+            ? $redirect->setRefererOrBaseUrl()
+            : $redirect->setPath('checkout/cart');
     }
 }

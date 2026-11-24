@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Hyvä Checkout renders a total segment only through a child block named after its code -->
+        <referenceBlock name="price-summary.total-segments">
+            <block name="price-summary.total-segment.loyalty" as="loyalty"
+                   template="MageOS_Loyalty::hyva/checkout/total.phtml"/>
+        </referenceBlock>
+        <!-- the cart form, posted as a plain form: the checkout reloads on the same step -->
+        <referenceContainer name="checkout.price-summary.section">
+            <block class="Magento\Checkout\Block\Cart\AbstractCart" name="checkout.loyalty"
+                   template="MageOS_Loyalty::cart/points.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">MageOS\Loyalty\ViewModel\Account</argument>
+                    <argument name="checkout" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

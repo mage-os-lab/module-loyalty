@@ -1,0 +1,53 @@
+<?php
+declare(strict_types=1);
+
+/** @var \Magento\Backend\Block\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<details class="admin__fieldset-wrapper">
+    <summary class="admin__fieldset-wrapper-title">
+        <strong class="title"><?= $escaper->escapeHtml(__('Adjust a Balance')) ?></strong>
+    </summary>
+    <form action="<?= $escaper->escapeUrl($block->getUrl('*/*/adjust')) ?>" method="post" class="admin__fieldset">
+        <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+        <div class="admin__field _required">
+            <label class="admin__field-label" for="loyalty-customer">
+                <span><?= $escaper->escapeHtml(__('Customer')) ?></span>
+            </label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" type="text" id="loyalty-customer" name="customer" required>
+                <div class="admin__field-note"><?= $escaper->escapeHtml(__('E-mail address or customer ID.')) ?></div>
+            </div>
+        </div>
+        <div class="admin__field _required">
+            <label class="admin__field-label" for="loyalty-points">
+                <span><?= $escaper->escapeHtml(__('Points')) ?></span>
+            </label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" type="number" id="loyalty-points" name="points" step="1" required>
+                <div class="admin__field-note">
+                    <?= $escaper->escapeHtml(__('A negative number takes points away, up to the balance.')) ?>
+                </div>
+            </div>
+        </div>
+        <div class="admin__field _required">
+            <label class="admin__field-label" for="loyalty-comment">
+                <span><?= $escaper->escapeHtml(__('Comment')) ?></span>
+            </label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" type="text" id="loyalty-comment" name="comment" maxlength="255"
+                       required>
+                <div class="admin__field-note">
+                    <?= $escaper->escapeHtml(__('Shown to the customer in the points history.')) ?>
+                </div>
+            </div>
+        </div>
+        <div class="admin__field">
+            <div class="admin__field-control">
+                <button type="submit" class="action-primary">
+                    <?= $escaper->escapeHtml(__('Adjust Balance')) ?>
+                </button>
+            </div>
+        </div>
+    </form>
+</details>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageos_loyalty_points_listing_data_source" xsi:type="string">MageOS\Loyalty\Model\ResourceModel\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageOS\Loyalty\Model\ResourceModel\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mageos_loyalty_points</argument>
+            <argument name="identifierName" xsi:type="string">entry_id</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Cart\TotalsConverter">
+        <plugin name="mageos_loyalty_grand_total_last" type="MageOS\Loyalty\Plugin\GrandTotalLast"/>
+    </type>
+</config>

@@ -10,13 +10,15 @@ $balance = $block->getQuote()->getCustomerId() ? $viewModel->getBalance() : 0;
 if ($balance <= 0 && !$used) {
     return;
 }
+// in a checkout (layout argument), Apply comes back to the checkout instead of the cart
+$back = $block->getData('checkout') ? '<input type="hidden" name="checkout" value="1">' : '';
 ?>
 <details class="block loyalty-form group"<?= $used ? ' open' : '' ?>>
     <summary class="title list-none flex justify-between items-center gap-2 py-2 font-semibold">
         <strong class="font-semibold"><?= $escaper->escapeHtml(__('Use Loyalty Points')) ?></strong>
     </summary>
     <form class="mt-2 mb-4" action="<?= $escaper->escapeUrl($block->getUrl('loyalty/cart/apply')) ?>" method="post">
-        <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+        <?= /* @noEscape */ $block->getBlockHtml('formkey') . $back ?>
         <div class="fieldset space-y-2">
             <label for="loyalty_points" class="label">
                 <?= $escaper->escapeHtml(

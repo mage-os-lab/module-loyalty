@@ -21,7 +21,7 @@ class QuoteTotalTest extends TestCase
     /**
      * Requested points, balance, rate, grand total => grand total left, amount, points spent.
      *
-     * @return array<string, array{int, int, float, float, float, float, ?int}>
+     * @return array<string, array{0: int, 1: int, 2: float, 3: float, 4: float, 5: float, 6: ?int, 7?: bool}>
      */
     public static function cases(): array
     {
@@ -31,11 +31,16 @@ class QuoteTotalTest extends TestCase
             'capped by grand total' => [900, 900, 0.5, 100.0, 0.0, 100.0, 200],
             'rate of zero' => [500, 1000, 0.0, 100.0, 100.0, 0.0, null],
             'nothing requested' => [0, 1000, 0.01, 100.0, 100.0, 0.0, null],
+            'points worth less than a cent pay nothing' => [5, 5, 0.001, 100.0, 100.0, 0.0, null],
+            'amount rounded down, never more points than asked' => [15, 15, 0.001, 100.0, 99.99, 0.01, 10],
+            'negative balance (refund of spent points) adds nothing' => [500, -40, 0.01, 100.0, 100.0, 0.0, null],
+            'multi-address checkout deducts nothing' => [500, 1000, 0.01, 100.0, 100.0, 0.0, 500, true],
         ];
     }
 
     /**
-     * Points are capped by the balance and the grand total, and only the points actually used are kept.
+     * Points are capped by the balance and the grand total, and only the points actually used are kept;
+     * the multi-address checkout uses none.
      */
     #[DataProvider('cases')]
     public function testCollect(
@@ -45,7 +50,8 @@ class QuoteTotalTest extends TestCase
         float $grandTotal,
         float $expectedTotal,
         float $expectedAmount,
-        ?int $expectedPoints
+        ?int $expectedPoints,
+        bool $multiShipping = false
     ): void {
         $points = $this->createStub(Points::class);
         $points->method('getBalance')->willReturn($balance);
@@ -55,7 +61,7 @@ class QuoteTotalTest extends TestCase
         $assignment = $this->createStub(ShippingAssignmentInterface::class);
         $assignment->method('getItems')->willReturn(['item']);
 
-        $data = ['loyalty_points' => $requested, 'customer_id' => 1];
+        $data = ['loyalty_points' => $requested, 'customer_id' => 1, 'is_multi_shipping' => $multiShipping];
         $quote = $this->createStub(Quote::class);
         $quote->method('getData')->willReturnCallback(fn ($key) => $data[$key] ?? null);
         $quote->method('setData')->willReturnCallback(function ($key, $value) use (&$data, $quote) {

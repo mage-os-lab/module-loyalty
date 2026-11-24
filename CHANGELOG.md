@@ -2,6 +2,31 @@
 
 All notable changes to this module are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+Upgrade: grant the new ACL resource *Customers > Loyalty Points* (and *Adjust Balances* under it) to the roles that should see the points ledger or adjust balances. On Hyvä, rebuild the theme's styles. Entries written by 1.0 are given their type and order number by a data patch.
+
+### Added
+
+- *Customers > Loyalty Points*: grid of every ledger entry, with filters and export, and a form to add points to a customer or take some away, with a comment the customer sees and the admin user's name.
+- Hyvä Checkout and Loki Checkout: loyalty line in the totals and the *Use Loyalty Points* form in the order summary. Written from their layouts, not run: see *Checkouts* in the README.
+
+### Changed
+
+- A credit memo takes back the refunded share of the points the order earned, at the rate of the day they were earned, and all that is left once the order is fully refunded. It used the rate of the day of the refund, and could take back more than was earned.
+- The amount paid with points is rounded down to cents.
+- The points history shows each entry in the reader's language; entries stored the text in the language of whoever triggered them.
+- Earned points are written when the invoice is saved, and a credit memo's points when it is saved: a document that fails to save no longer moves points.
+
+### Fixed
+
+- Multi-address checkout: points chosen in the cart reduced each order without being spent. They are no longer deducted there.
+- With one point worth less than a cent, the order asked for more points than the customer had, and was refused at each attempt.
+- A negative balance (points taken back after being spent) increased the grand total of a cart where points were asked for.
+- Points stayed spent, with no order, when another module refused the order right before it was placed.
+- Points were not given back when a payment in review was denied.
+- Several credit memos could give back more points than the order had spent, and a checkout error reported after the order was saved gave the points back while the order stayed.
+
 ## [1.0.0] - 2026-11-17
 
 ### Added

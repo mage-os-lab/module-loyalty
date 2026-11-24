@@ -21,3 +21,27 @@ Points Earned per Currency Unit,Punti guadagnati per unità di valuta
 Points per unit of base currency invoiced (grand total). 0 stops earning.,Punti per unità di valuta base fatturata (totale complessivo). 0 interrompe l'accumulo.
 Value of One Point,Valore di un punto
 Conversion rate: amount of base currency one point is worth when spent on an order.,Tasso di conversione: importo in valuta base che vale un punto quando è usato per un ordine.
+Earned on an invoice,Guadagnati su una fattura
+Taken back on a refund,Ritirati con un rimborso
+Spent on an order,Usati per un ordine
+Returned: order canceled,Restituiti: ordine annullato
+Returned: order refunded,Restituiti: ordine rimborsato
+Adjustment,Rettifica
+"Enter a whole number of points, other than 0.",Inserisci un numero intero di punti diverso da 0.
+Enter a comment: the customer sees it in the points history.,Inserisci un commento: il cliente lo vede nello storico punti.
+%1 has only %2 points: nothing was taken away.,%1 ha solo %2 punti: non è stato tolto nulla.
+The balance of %1 is now %2 points.,Il saldo di %1 è ora di %2 punti.
+Several accounts use this e-mail address: enter the customer ID instead.,Più account usano questo indirizzo e-mail: inserisci invece l'ID cliente.
+No customer has this e-mail address or ID.,Nessun cliente ha questo indirizzo e-mail o questo ID.
+Adjust a Balance,Rettifica un saldo
+Customer,Cliente
+E-mail address or customer ID.,Indirizzo e-mail o ID cliente.
+"A negative number takes points away, up to the balance.","Un numero negativo toglie punti, fino al saldo."
+Shown to the customer in the points history.,Mostrato al cliente nello storico punti.
+Adjust Balance,Rettifica saldo
+Adjust Balances,Rettificare i saldi
+ID,ID
+Customer ID,ID cliente
+Type,Tipo
+Order,Ordine
+Admin User,Utente amministratore
