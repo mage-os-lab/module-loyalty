@@ -2,7 +2,9 @@
 
 All notable changes to this module are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.1.0] - 2026-11-24
+
+Closes several ways points were created or lost around orders, refunds and multi-address checkout, and gives the admin a points ledger with manual adjustments.
 
 Upgrade: grant the new ACL resource *Customers > Loyalty Points* (and *Adjust Balances* under it) to the roles that should see the points ledger or adjust balances. On Hyvä, rebuild the theme's styles. Entries written by 1.0 are given their type and order number by a data patch.
 
@@ -26,6 +28,11 @@ Upgrade: grant the new ACL resource *Customers > Loyalty Points* (and *Adjust Ba
 - Points stayed spent, with no order, when another module refused the order right before it was placed.
 - Points were not given back when a payment in review was denied.
 - Several credit memos could give back more points than the order had spent, and a checkout error reported after the order was saved gave the points back while the order stayed.
+
+### Compatibility
+
+- Hyvä Checkout, Loki Checkout: the totals line and the points form are written from their layouts, not run on an install.
+- Multi-address checkout: loyalty points cannot be used there.
 
 ## [1.0.0] - 2026-11-17
 
